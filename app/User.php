@@ -12,6 +12,10 @@ class User extends Authenticatable
 
     protected $table = 'wp_users';
 
+    protected $primaryKey = 'ID';
+
+    protected $passwordKey = 'user_pass';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -38,4 +42,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get the password for the user.
+     *
+     * @return string
+     */
+    public function getAuthPassword()
+    {
+        return $this->user_pass;
+    }
 }
