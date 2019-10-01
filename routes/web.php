@@ -18,3 +18,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/wordpress', function(){
+    rename_function('__', '___' );
+    require('../wordpress/wp-load.php');
+    return loginWpUser(\Auth::user()->username);
+});

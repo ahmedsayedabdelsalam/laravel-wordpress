@@ -16,6 +16,16 @@
  * @package WordPress
  */
 
+// by code95
+function loginWpUser($username){
+    $user_id = username_exists($username);
+    $userdata = get_userdata($user_id);
+    wp_set_auth_cookie($user_id);
+    do_action('wp_login',$userdata->ID);
+    // you can redirect the authenticated user to the "logged-in-page", define('MY_PROFILE_PAGE',1); f.e. first
+    header("Location:".get_page_link('/'));
+}
+
 /** Define ABSPATH as this file's directory */
 if ( ! defined( 'ABSPATH' ) ) {
 	define( 'ABSPATH', dirname( __FILE__ ) . '/' );
